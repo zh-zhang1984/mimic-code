@@ -1,0 +1,8 @@
+--to include patients admitted because of cardiopulmonary resuscitation.
+WITH cpr_group AS (
+	SELECT subject_id, hadm_id,
+                CASE
+                        WHEN icd9_code='9960' THEN 1
+                  ELSE 0 END AS cpr
+	FROM DIAGNOSES_ICD)
+select * from cpr_group
